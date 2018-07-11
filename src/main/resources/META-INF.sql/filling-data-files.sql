@@ -1,11 +1,11 @@
 insert into users(user_name,password) values
-('John','Doe'),
-('Chris','Scifer'),
-('Sam','Johnson'),
-('Paul Watson');
+('John','312w'),
+('Chris','we32'),
+('Sam','rq13'),
+('Paul',' qwe2');
 
 insert into authors(real_name,id_card,user_id) values
-('Eric','er1234','1'),
-('Stan','3r4434','2'),
-('Rob','3rwe34','3'),
-('Jason','3rfse4','4');
+('Eric','er12','1'),
+('Stan','3r44','2'),
+('Rob','3rwe','3'),
+('Jason','3se4','4');
