@@ -2,15 +2,33 @@
 'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 
 <mapper namespace="uMapper" >
-        <resultMap id="UserMap" type="User" autoMapping="true">
+        
+        <resultMap id="UserMap" type="User"  >
             <id property="id" column="id"/>
             <result property="userName" column="user_name"/>
+          <result property="password" column="password" />
+            <collection property="visitors" 
+                javaType="ArrayList" 
+                
+                        column="id"  
+                        select="sqlM.findVisitorByUserId"/>
+                        
+<!--            <collection property="visitors" javaType="ArrayList" ofType="Visitor" resultMap="vMap.VisitorMap" 
+                select="sqlM.findAllVisitors"/>-->
         </resultMap> 
         
-        <resultMap id="userMapA" type="User">
+        
+        <!--other way of mapping-->
+<!--        <resultMap id="userMapA" type="User">
             <id property="id" column="id"/>
             <result property="userName" column="user_name"/>
             <result property="password" column="password" />
-        </resultMap>
+            <collection property="visitors" javaType="ArrayList" ofType="Visitor">
+                <id property="id" column="id"/>
+                <result property="visitorIp" column="visitor_ip"/>
+                <result property="visitorDate" column="visitor_date"/>
+                <association property="user" column="user_id" resultMap="uMapper.UserMap" select="sqlM.findUserById"/>
+            </collection>
+        </resultMap>-->
 </mapper>
 

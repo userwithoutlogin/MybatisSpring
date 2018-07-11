@@ -7,6 +7,7 @@ package com.mycompany.mybatisspring.services;
 
 import com.mycompany.mybatisspring.entities.Author;
 import com.mycompany.mybatisspring.entities.User;
+import com.mycompany.mybatisspring.entities.Visitor;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,22 @@ public class EntityService {
     public List<Author> findAllAuthors(){
         return entityMapper.findAllAuthors();
     }
+    public Author findAuthorById(Long id){
+        return entityMapper.findAuthorById(id);
+    }
+    
+    public List<User> findAllUsers(){
+        return entityMapper.findAllUsers();
+    }
     public User findUserById(Long id){
         return entityMapper.findUserById(id);
     }
+    
+    public List<Visitor> findAllVisitors(){
+        return entityMapper.findAllVisitors();
+    }
+    public Visitor findVisitorById(Long id){
+        return entityMapper.findVisitorById(id);
+    }
+     
 }

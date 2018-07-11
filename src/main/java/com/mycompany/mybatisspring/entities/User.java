@@ -5,6 +5,8 @@
  */
 package com.mycompany.mybatisspring.entities;
 
+import java.util.List;
+
 /**
  *
  * @author root
@@ -13,8 +15,9 @@ public class User {
     private Long id;
     private String userName;
     private String password;
-
+    private List<Visitor> visitors;
     public User() {
+        
     }
 
     public User(String userName, String password) {
@@ -25,6 +28,14 @@ public class User {
     public User(Long id, String userName) {
         this.id = id;
         this.userName = userName;
+    }
+
+    public List<Visitor> getVisitors() {
+        return visitors;
+    }
+
+    public void setVisitors(List<Visitor> visitors) {
+        this.visitors = visitors;
     }
 
     public Long getId() {

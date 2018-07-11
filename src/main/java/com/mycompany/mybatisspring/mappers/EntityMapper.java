@@ -7,6 +7,7 @@ package com.mycompany.mybatisspring.mappers;
 
 import com.mycompany.mybatisspring.entities.Author;
 import com.mycompany.mybatisspring.entities.User;
+import com.mycompany.mybatisspring.entities.Visitor;
 import java.util.List;
 
 /**
@@ -15,5 +16,9 @@ import java.util.List;
  */
 public interface EntityMapper {
     List<Author> findAllAuthors();
+    Author findAuthorById(Long id);
     User findUserById(Long id);
+    List<User> findAllUsers();
+    Visitor findVisitorById(Long id);
+    List<Visitor> findAllVisitors();
 }

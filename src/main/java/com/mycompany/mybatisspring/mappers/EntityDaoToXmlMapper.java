@@ -7,6 +7,7 @@ package com.mycompany.mybatisspring.mappers;
 
 import com.mycompany.mybatisspring.entities.Author;
 import com.mycompany.mybatisspring.entities.User;
+import com.mycompany.mybatisspring.entities.Visitor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -40,9 +41,29 @@ public class EntityDaoToXmlMapper implements EntityMapper{
     public List<Author> findAllAuthors() {
     return session.selectList("sqlM.findAllAuthors");    
     }
-
+@Override
+    public Author findAuthorById(Long id) {
+        return session.selectOne("sqlM.findAuthorById", id);
+    }
     @Override
     public User findUserById(Long id) {
         return session.selectOne("sqlM.findUserById",id);
     }
+
+    @Override
+    public List<User> findAllUsers() {
+      return session.selectList("sqlM.findAllUsers");
+    }
+
+    @Override
+    public Visitor findVisitorById(Long id) {
+      return session.selectOne("sqlM.findVisitorById",id);
+    }
+
+    @Override
+    public List<Visitor> findAllVisitors() {
+      return session.selectList("sqlM.findAllVisitors");
+    }
+
+     
 }

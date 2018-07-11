@@ -7,12 +7,15 @@
     <typeAliases>
         <typeAlias alias="User" type="com.mycompany.mybatisspring.entities.User"/>
         <typeAlias alias="Author" type="com.mycompany.mybatisspring.entities.Author"/>
+        <typeAlias alias="Visitor" type="com.mycompany.mybatisspring.entities.Visitor"/>
     </typeAliases>
  
    <mappers>
       <mapper resource = "META-INF.mybatis/UserMapper.xml"/>
       <mapper resource="META-INF.mybatis/AuthorMapper.xml"/>
+       <mapper resource="META-INF.mybatis/VisitorMapper.xml"/>
       <mapper resource="META-INF.mybatis/SqlQueriesMapper.xml"/>
+      
       <mapper class="com.mycompany.mybatisspring.mappers.EntityMapperAnnotation"/>
       <!--<package name="mybat"/>-->
    </mappers>

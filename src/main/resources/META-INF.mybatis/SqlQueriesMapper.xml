@@ -13,16 +13,14 @@ and open the template in the editor.
     <sql id="smplSelect">select * from ${table}</sql>
     
     <select id="findAllUsers" resultMap="uMapper.UserMap">
-        <include refid="smplSelect">
-            <property name="table" value="users"/>
-        </include>
+         select * from users  
     </select>
     
     <select id="findUserById" resultMap="uMapper.UserMap">
         <include refid="smplSelect">
-            <property name="table" value="users"/>
-        </include>
-        where id=#{id}
+            <property name="table" value="users u"/>
+        </include>  
+        where u.id=#{id}
     </select>
 <!--    <select id="findAllAuthors" resultMap="aMapper.AuthorMap">
         select     a.real_name , a.id_card , 
@@ -41,11 +39,31 @@ and open the template in the editor.
         users u on a.user_id=u.id
     </select>
     
+    <!--find authors without user--> 
     <select id="findAllAuthors_A" resultMap="aMapper.AuthorMap">
         <include refid="smplSelect">
             <property name="table" value="authors"/>
         </include>
     </select>
     
+    <select id="findAuthorById" resultMap="aMapper.AuthorMap">
+        <include refid="smplSelect">
+            <property name="table" value="authors"/>
+        </include>
+        where id=#{id}
+    </select>
+    
+    <!--for nested select-->
+    <select id="findVisitorByUserId" resultMap="vMapper.VisitorMap">
+        select * from visitors v where v.user_id=#{id};
+    </select>
+    
+    
+    <select id="findVisitorById" resultMap="vMapper.VisitorMap">
+        select * from visitors v where v.id=#{id};
+    </select>
+    <select id="findAllVisitors" resultMap="vMapper.VisitorMap">
+        select * from visitors  
+    </select>
     
 </mapper>
