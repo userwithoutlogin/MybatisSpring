@@ -15,6 +15,9 @@ public class Author {
     private String idCard;
     private User user;
 
+    public Author() {
+    }
+
     public Author(Long id, String realName, String idCard, User user) {
         this.id = id;
         this.realName = realName;
@@ -52,6 +55,11 @@ public class Author {
 
     public void setIdCard(String idCard) {
         this.idCard = idCard;
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" + "id=" + id + ", realName=" + realName + ", idCard=" + idCard + ", user=" + user + '}';
     }
     
 }

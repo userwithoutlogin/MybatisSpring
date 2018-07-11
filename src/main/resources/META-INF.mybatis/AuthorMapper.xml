@@ -12,6 +12,8 @@
     </resultMap>
     
       
+    <!--other ways of mapping-->
+      
     <resultMap id="AuthorMap_A" type="Author">
         <id property="id" column="id"/>
         <result property="realName" column="real_name"/>

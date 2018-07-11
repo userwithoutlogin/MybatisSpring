@@ -5,10 +5,14 @@
  */
 package com.mycompany.mybatisspring;
 
-import com.mycompany.mybatisspring.mappers.UserMapperAnnotation;
-import com.mycompany.mybatisspring.mappers.UserDaoToXmlMapper;
-import com.mycompany.mybatisspring.services.AuthorService;
-import com.mycompany.mybatisspring.services.UserService;
+
+import com.mycompany.mybatisspring.entities.Author;
+import com.mycompany.mybatisspring.entities.User;
+import com.mycompany.mybatisspring.entities.Visitor;
+import com.mycompany.mybatisspring.mappers.EntityDaoToXmlMapper;
+ 
+import com.mycompany.mybatisspring.services.EntityService;
+import java.util.List;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.context.ApplicationContext;
@@ -29,15 +33,23 @@ public class TestMain {
         ctx.load(cpRes);
         ctx.refresh();
         
-//        UserMapperXml um = ctx.getBean("userMapper",UserMapperXml.class);
-        UserService um = ctx.getBean("userService",UserService.class);
-        um.findAll().forEach(user->{
-            System.out.println(user.getUserName());
-        });
-        System.out.println("-----------");
-        AuthorService authorService = ctx.getBean("authorService",AuthorService.class);
-        authorService.findAll().forEach(author->{
-            System.out.println(author.getRealName());
-        });
+ 
+        EntityService es = ctx.getBean("entityService",EntityService.class);
+        
+        List<Author> authors = es.findAllAuthors(); 
+        Author author = es.findAuthorById(1L);
+        
+        List<User> users = es.findAllUsers();
+        User user = es.findUserById(1L);
+        
+        List<Visitor> visitors = es.findAllVisitors();
+        Visitor visitor = es.findVisitorById(1L);
+         
+        
+        
+        System.out.println(es.findAuthorById(1L));
+        
     }
+     
+     
 }
