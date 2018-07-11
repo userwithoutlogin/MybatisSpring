@@ -5,7 +5,7 @@
  */
 package com.mycompany.mybatisspring.mappers;
 
-import com.mycompany.mybatisspring.mappers.UserMapper;
+import com.mycompany.mybatisspring.entities.Author;
 import com.mycompany.mybatisspring.entities.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +15,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.mycompany.mybatisspring.mappers.EntityMapper;
 
 /**
  *
  * @author root
  */
-@Service("userMapperXml")
-public class UserDaoToXmlMapper implements UserMapper{
+@Service("entityDaoToXmlMapper")
+public class EntityDaoToXmlMapper implements EntityMapper{
  
     private SqlSession  session ;
 
@@ -34,8 +35,14 @@ public class UserDaoToXmlMapper implements UserMapper{
     }
      
   
+
     @Override
-    public List<User> findAll(){
-        return session.selectList("sqlM.findUsers");           
+    public List<Author> findAllAuthors() {
+    return session.selectList("sqlM.findAllAuthors");    
+    }
+
+    @Override
+    public User findUserById(Long id) {
+        return session.selectOne("sqlM.findUserById",id);
     }
 }

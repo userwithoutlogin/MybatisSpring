@@ -13,7 +13,7 @@
       <mapper resource = "META-INF.mybatis/UserMapper.xml"/>
       <mapper resource="META-INF.mybatis/AuthorMapper.xml"/>
       <mapper resource="META-INF.mybatis/SqlQueriesMapper.xml"/>
-      <mapper class="com.mycompany.mybatisspring.mappers.UserMapperAnnotation"/>
+      <mapper class="com.mycompany.mybatisspring.mappers.EntityMapperAnnotation"/>
       <!--<package name="mybat"/>-->
    </mappers>
    

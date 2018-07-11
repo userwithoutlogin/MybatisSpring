@@ -13,7 +13,23 @@ public class Author {
     private Long id;
     private String realName;
     private String idCard;
+    private User user;
 
+    public Author(Long id, String realName, String idCard, User user) {
+        this.id = id;
+        this.realName = realName;
+        this.idCard = idCard;
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
     public Long getId() {
         return id;
     }

@@ -8,19 +8,44 @@ and open the template in the editor.
 <!DOCTYPE mapper PUBLIC '-//org.mybatis//DTD Configuration//EN' 'http://org.mybatis/dtd/mybatis-3-mapper.dtd'>
 
 <mapper namespace="sqlM">
-
+ <!--#{group_id,javaType=int,jdbcType=NUMERIC,typeHandler=MyTypeHandler}-->
+    
     <sql id="smplSelect">select * from ${table}</sql>
     
-    <select id="findUsers" resultMap="uMapper.UserMap">
+    <select id="findAllUsers" resultMap="uMapper.UserMap">
         <include refid="smplSelect">
             <property name="table" value="users"/>
         </include>
     </select>
-   
-    <select id="findAuthors" resultMap="aMapper.AuthorMap">
+    
+    <select id="findUserById" resultMap="uMapper.UserMap">
+        <include refid="smplSelect">
+            <property name="table" value="users"/>
+        </include>
+        where id=#{id}
+    </select>
+<!--    <select id="findAllAuthors" resultMap="aMapper.AuthorMap">
+        select     a.real_name , a.id_card , 
+        u.id , u.user_name , u.password 
+        from authors a left join
+        users u on a.user_id=u.id
+    </select>-->
+    
+    
+     <!--find authors with user--> 
+    <select id="findAllAuthors" resultMap="aMapper.AuthorMap">
+        <include refid="smplSelect">
+            <property name="table" value="authors a"/>
+        </include>
+         left join
+        users u on a.user_id=u.id
+    </select>
+    
+    <select id="findAllAuthors_A" resultMap="aMapper.AuthorMap">
         <include refid="smplSelect">
             <property name="table" value="authors"/>
         </include>
     </select>
+    
     
 </mapper>

@@ -5,8 +5,12 @@
         <resultMap id="UserMap" type="User" autoMapping="true">
             <id property="id" column="id"/>
             <result property="userName" column="user_name"/>
-            <!--<result property="password" column="password"/>-->
         </resultMap> 
         
+        <resultMap id="userMapA" type="User">
+            <id property="id" column="id"/>
+            <result property="userName" column="user_name"/>
+            <result property="password" column="password" />
+        </resultMap>
 </mapper>
 
