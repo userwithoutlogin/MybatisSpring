@@ -2,6 +2,9 @@
 <beans 
         xmlns="http://www.springframework.org/schema/beans"
         xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:context="http://www.springframework.org/schema/context"
+         xmlns:mybat="http://mybatis.org/schema/mybatis-spring"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 
        xsi:schemaLocation=
@@ -9,9 +12,48 @@
              http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
              http://www.springframework.org/schema/jdbc
              http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+             http://www.springframework.org/schema/context
+             http://www.springframework.org/schema/context/spring-context.xsd
+              http://mybatis.org/schema/mybatis-spring 
+            http://mybatis.org/schema/mybatis-spring.xsd
 ">
+   
+    <context:component-scan base-package="com.mycompany.mybatisspring.services ,
+                                                com.mycompany.mybatisspring.mappers"/>
+    <mybat:scan base-package="com.mycompany.mybatisspring.mappers"/>
+                
+               <!--other ways to register annotated mappers-->
+               
+<!--    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+    p:basePackage="com.mycompany.mybatisspring.services"/>
+    <bean id="userMapperAnnotation" class="org.mybatis.spring.mapper.MapperFactoryBean"
+      p:mapperInterface="com.mycompany.mybatisspring.services.UserMapperAnnotation"
+      p:sqlSessionFactory-ref="sqlSessionFactory"
+    />-->
+             <!-- ****************************************************   -->
+    
     <jdbc:embedded-database id="dataSource" type="H2">
         <jdbc:script location="classpath:META-INF.sql/schemas.sql"  />
         <jdbc:script location="classpath:META-INF.sql/filling-data-files.sql" />
     </jdbc:embedded-database>
+    
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:META-INF.mybatis/mybatis-config.xml"/>
+        <!--<property name="mapperLocations" value="classpath*:META-INF.mybatis/UserMapper.xml"/>-->
+    </bean>
+    
+    <bean id="sqlSession"  class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>   
+    
+    
+<!--    <bean id="userMapperXml" class="com.mycompany.mybatisspring.services.UserMapperAnnotation">
+        <property name="session" ref="sqlSession"/>
+    </bean>  
+    <bean id="userService" class="com.mycompany.mybatisspring.services.UserService">
+        <property name="userMapper">
+            <bean abstract="true" class="com.mycompany.mybatisspring.services.UserMapperAnnotation"/>
+        </property>    
+    </bean>-->
 </beans>

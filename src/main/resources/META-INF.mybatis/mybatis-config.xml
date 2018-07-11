@@ -1,8 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration PUBLIC 
-'-//mybatis.org//DTD Configuration 3.0//EN' 
-'http://mybatis.org/dtd/mybatis-3-config.dtd'>
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE configuration 
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+<configuration> 
 
-<configuration>
-    
+    <typeAliases>
+        <typeAlias alias="User" type="com.mycompany.mybatisspring.entities.User"/>
+        <typeAlias alias="Author" type="com.mycompany.mybatisspring.entities.Author"/>
+    </typeAliases>
+ 
+   <mappers>
+      <mapper resource = "META-INF.mybatis/UserMapper.xml"/>
+      <mapper resource="META-INF.mybatis/AuthorMapper.xml"/>
+      <mapper resource="META-INF.mybatis/SqlQueriesMapper.xml"/>
+      <mapper class="com.mycompany.mybatisspring.mappers.UserMapperAnnotation"/>
+      <!--<package name="mybat"/>-->
+   </mappers>
+   
 </configuration>
