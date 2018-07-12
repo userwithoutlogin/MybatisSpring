@@ -105,6 +105,21 @@ public class EntityDaoToXmlMapper implements EntityMapper{
     session.update("sqlM.updateVisitor", visitor);   
     }
 
+    @Override
+    public void deleteUser(User user) {
+        session.delete("sqlM.deleteUser", user);
+    }
+
+    @Override
+    public void deleteAuthor(Author author) {
+        session.delete("sqlM.deleteAuthor", author);
+    }
+
+    @Override
+    public void deleteVisitor(Visitor visitor) {
+        session.delete("sqlM.deleteVisitor", visitor);
+    }
+
     
     
      

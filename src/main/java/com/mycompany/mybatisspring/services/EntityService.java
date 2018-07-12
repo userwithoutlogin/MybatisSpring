@@ -81,5 +81,14 @@ public class EntityService {
     public void updateVisitor(Visitor visitor){
         entityMapper.updateVisitor(visitor);
     }
-       
+    
+    public void deleteUser(User user){
+        entityMapper.deleteUser(user);
+    }
+    public void deleteAuthor(Author author){
+        entityMapper.deleteAuthor(author);
+    }
+    public void deleteVisitor(Visitor visitor){
+        entityMapper.deleteVisitor(visitor);
+    }
 }

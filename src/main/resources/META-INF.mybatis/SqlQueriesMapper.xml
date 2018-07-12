@@ -144,4 +144,28 @@ and open the template in the editor.
         
         where id=#{id}
     </update>
+    
+    <!--***************DELETE*************-->
+    <sql id="del">delete from ${table} where id=${id}</sql>
+    
+    <delete id="deleteUser" parameterType="User">
+        <include refid="del">
+            <property name="table" value="users"/>
+            <property name="id" value="#{id}"/>
+        </include>
+    </delete>  
+         
+    <delete id="deleteAuthor" parameterType="Author">
+        <include refid="del">
+            <property name="table" value="authors"/>
+            <property name="id" value="#{id}"/>
+        </include>
+    </delete>       
+    
+    <delete id="deleteVisitor" parameterType="Visitor">
+        <include refid="del">
+            <property name="table" value="visitors"/>
+            <property name="id" value="#{id}"/>
+        </include>
+    </delete>       
 </mapper>

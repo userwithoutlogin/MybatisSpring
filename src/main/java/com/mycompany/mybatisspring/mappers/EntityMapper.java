@@ -31,4 +31,8 @@ public interface EntityMapper {
     void updateAuthor(Author author);
     void updateUser(User user);
     void updateVisitor(Visitor visitor);
+    
+    void deleteUser(User user);
+    void deleteAuthor(Author author);
+    void deleteVisitor(Visitor visitor);
 }

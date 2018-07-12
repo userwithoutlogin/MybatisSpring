@@ -30,4 +30,12 @@ public class AuthorDynamicSql {
             WHERE("id=#{id}");
         }}.toString();
     }
+    public String delete(){
+       return  new SQL(){
+            {
+                DELETE_FROM("authors");
+                WHERE("id=#{id}");
+            }
+        }.toString();
+    }
 }

@@ -74,36 +74,24 @@ public class TestMain {
         u.setVisitors(visitorsU);
         
         List<Author> authors = es.findAllAuthors(); 
-        Author author = es.findAuthorById(1L);
+        Author author = es.findAuthorById(3L);
         
         List<User> users = es.findAllUsers();
-        User user = es.findUserById(1L);
+        User user = es.findUserById(3L);
         
         List<Visitor> visitors = es.findAllVisitors();
-        Visitor visitor = es.findVisitorById(1L);
+        Visitor visitor = es.findVisitorById(6L);
          
+        
+        es.deleteAuthor(author);
+         List<Author> authors1 = es.findAllAuthors();
+        
+        es.deleteVisitor(visitor);
+        List<Visitor> visitors1 = es.findAllVisitors();
+       
+        es.deleteUser(user);
+         List<User> users1 = es.findAllUsers();
+        
     }
-     public static List<User> createUsers(int count){
-         List<User> users = new ArrayList();
-         if(count>0)
-         for(int i=0;i<count;i++){
-             User u = new User();
-             u.setUserName("User"+i);
-             u.setPassword("qw"+i);
-             users.add(u);
-         }
-         return users;
-     }
-      public static List<Author> createAuthors( List<User> users){
-         List<Author> authors = new ArrayList();
-         if(!users.isEmpty())
-         for(int i=0;i<users.size();i++){
-             Author a = new Author();
-             a.setRealName("real"+i);
-             a.setIdCard("w"+i);
-             a.setUser(users.get(i));
-             authors.add(a);
-         }
-         return authors;
-     }
+//     
 }

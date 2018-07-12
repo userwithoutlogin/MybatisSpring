@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.ibatis.annotations.Arg;
 import org.apache.ibatis.annotations.ConstructorArgs;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Many;
@@ -168,6 +170,18 @@ public interface EntityMapperAnnotation extends EntityMapper{
      })
      @Override
      void updateVisitor(Visitor visitor) ;
+
+     @Delete("delete from users where id=#{id}")
+     @Override
+     void deleteUser(User user);
+
+     @DeleteProvider(type = AuthorDynamicSql.class,method = "delete")
+     @Override
+     void deleteAuthor(Author author);
+     
+      @Delete("delete from visitors where id=#{id}")
+      @Override
+      void deleteVisitor(Visitor visitor) ;
      
      
 }
