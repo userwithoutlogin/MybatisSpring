@@ -20,8 +20,8 @@ import com.mycompany.mybatisspring.mappers.EntityMapper;
  */
 @Service("entityService")
 public class EntityService {
-    @Resource(name = "entityMapperAnnotation")
-//    @Resource(name = "entityDaoToXmlMapper")
+//    @Resource(name = "entityMapperAnnotation")
+    @Resource(name = "entityDaoToXmlMapper")
     private EntityMapper  entityMapper ;
 
     public EntityMapper getEntityMapper() {
@@ -54,4 +54,19 @@ public class EntityService {
         return entityMapper.findVisitorById(id);
     }
      
+    public void isertAuthor(Author author){
+        entityMapper.insertAuthor(author);
+    }
+//    public void isertAuthors(List<Author> authors){
+//        entityMapper.insertAuthors(authors);
+//    }
+    public void insertUser(User user){
+        entityMapper.insertUser(user);
+    }
+//     public void insertUsers(List<User> users){
+//        entityMapper.insertUsers(users);
+//    }
+    public void insertVisitor(Visitor visitor){
+        entityMapper.insertVisitor(visitor);
+    }
 }

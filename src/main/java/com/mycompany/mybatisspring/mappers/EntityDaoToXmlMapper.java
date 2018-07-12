@@ -65,5 +65,32 @@ public class EntityDaoToXmlMapper implements EntityMapper{
       return session.selectList("sqlM.findAllVisitors");
     }
 
+    @Override
+    public void insertAuthor(Author author) {
+       session.insert("sqlM.insertAuthor",author);
+    }
+
+//    @Override
+//    public void insertAuthors(List<Author> authors) {
+//      session.insert("sqlM.insertAuthors",authors);
+//    }
+
+    @Override
+    public void insertUser(User user) {
+        session.insert("sqlM.insertUser",user);
+    }
+
+//    @Override
+//    public void insertUsers(List<User> users) {
+//      session.insert("sqlM.insertUsers",users);
+//    }
+
+    @Override
+    public void insertVisitor(Visitor visitor) {
+      session.insert("sqlM.insertVisitor",visitor);
+    }
+
+    
+    
      
 }

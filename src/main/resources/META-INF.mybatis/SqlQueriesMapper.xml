@@ -66,4 +66,45 @@ and open the template in the editor.
         select * from visitors  
     </select>
     
+    <!--****************INSERT**************-->
+    
+    
+    
+    <sql id="insU">insert into users(user_name,password) values</sql>
+    <insert id="insertUser" parameterType="User" keyProperty="id" useGeneratedKeys="true">
+        <include refid="insU"/>
+        (#{userName},#{password})
+    </insert>
+<!--    <insert id="insertUsers" parameterType="User" keyProperty="id" useGeneratedKeys="true">
+        <include refid="insU"/>
+       <foreach item="item" collection="list" separator=",">
+           (#{item.userName},#{item.password})
+            
+       </foreach>
+    </insert>-->
+    
+    
+    <sql id="insA">insert into authors(real_name,id_card,user_id) values</sql>
+    <insert id="insertAuthor"  
+            parameterType="Author" keyProperty="id" useGeneratedKeys="true">
+        <include refid="insA"/>
+        (#{realName},#{idCard},#{user.id})
+         
+    </insert>
+    
+<!--    <insert id="insertAuthors"  
+        parameterType="Author" keyProperty="id" useGeneratedKeys="true">
+        <include refid="insA"/>
+        <foreach item="item" separator="," collection="list">
+            (#{item.realName},#{item.idCard},#{item.user.id})
+        </foreach>
+    </insert>   -->
+    
+      <sql id="insV">insert into visitors(user_id,visitor_ip,visit_date) values </sql>
+    <insert  id="insertVisitor" parameterType="Visitor" keyProperty="id" useGeneratedKeys="true">
+        insert into visitors(visitor_ip,visit_date,user_id) values
+         (#{visitorIp},#{visitDate},#{user.id})
+    </insert> 
+    
+     <!--*****************UPDATE****************--> 
 </mapper>

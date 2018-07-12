@@ -21,4 +21,12 @@ public interface EntityMapper {
     List<User> findAllUsers();
     Visitor findVisitorById(Long id);
     List<Visitor> findAllVisitors();
+    
+    void insertAuthor(Author author);
+//    void insertAuthors(List<Author> authors);
+    void insertUser(User user);
+//    void insertUsers(List<User> users);
+    void insertVisitor(Visitor visitor);
+    
+    
 }

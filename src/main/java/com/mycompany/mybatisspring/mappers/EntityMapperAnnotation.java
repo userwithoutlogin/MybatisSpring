@@ -1,5 +1,6 @@
 package com.mycompany.mybatisspring.mappers;
 
+import com.mycompany.mybatisspring.dynamicsql.AuthorDynamicSql;
 import com.mycompany.mybatisspring.entities.Author;
 import com.mycompany.mybatisspring.entities.User;
 import com.mycompany.mybatisspring.entities.Visitor;
@@ -7,8 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.ibatis.annotations.Arg;
 import org.apache.ibatis.annotations.ConstructorArgs;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.One;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -108,6 +112,29 @@ public interface EntityMapperAnnotation extends EntityMapper{
     @ResultMap("VisitorMap")
     @Select("select * from visitors where user_id=#{id}")
     public Visitor findVisitorByUserId(@Param("id")Long id);
-    
+
+    @InsertProvider(type = AuthorDynamicSql.class,method = "insert")
+    @Options(keyProperty = "id",useGeneratedKeys = true)
+    @Override
+      void insertAuthor(Author author) ;
+
+//    @Override
+//      void insertAuthors(List<Author> authors);
+    @Insert("insert into users(user_name,password) values"+
+            "(#{userName},#{password})")
+    @Options(keyProperty = "id",useGeneratedKeys = true)
+    @Override
+     void insertUser(User user);
+
+//    @Override
+//    public default void insertUsers(List<User> users) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+     @Insert("insert into visitors(visitor_ip,visit_date,user_id) values"+
+             "(#{visitorIp},#{visitDate},#{user.id})")
+     @Options(keyProperty = "id",useGeneratedKeys = true)
+     @Override
+    void insertVisitor(Visitor visitor);
+     
      
 }
