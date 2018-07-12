@@ -21,4 +21,13 @@ public class AuthorDynamicSql {
             VALUES("real_name , id_card, user_id", "#{realName},#{idCard},#{user.id}");
         }}.toString();
     }
+    public String update(Author author){
+        return new SQL(){{
+            UPDATE("authors");
+           if(author.getRealName()!=null) SET("real_name=#{realName}");
+           if(author.getIdCard()!=null)   SET("id_card=#{idCard}");
+           if(author.getUser()!=null)     SET("user_id=#{user.id}");
+            WHERE("id=#{id}");
+        }}.toString();
+    }
 }

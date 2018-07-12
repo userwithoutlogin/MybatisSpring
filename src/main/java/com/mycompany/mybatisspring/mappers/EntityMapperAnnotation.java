@@ -19,6 +19,8 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
  
 import org.apache.ibatis.annotations.ResultMap;
+import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.UpdateProvider;
 import org.springframework.stereotype.Service;
 
 /*
@@ -135,6 +137,37 @@ public interface EntityMapperAnnotation extends EntityMapper{
      @Options(keyProperty = "id",useGeneratedKeys = true)
      @Override
     void insertVisitor(Visitor visitor);
+
+     @UpdateProvider(type = AuthorDynamicSql.class,method ="update")
+     @Override
+     void updateAuthor(Author author);
+     
+     @Update({
+       "<script>",
+        "update users",
+        "<set>",
+            "<if test='#{userName!=null}'>user_name=#{userName},</if>",
+            "<if test='#{password!=null}'>password=#{password},</if>",
+        "</set>", 
+        "where id=#{id}",
+       "</script>"      
+     })
+     @Override
+     void updateUser(User user) ;
+
+     @Update({
+       "<script>",
+        "update visitors",
+        "<set>",
+           " <if test='#{visitorIp!=null}'>visitor_ip=#{visitorIp},</if>",
+            "<if test='#{visitDate!=null}'>visit_date=#{visitDate},</if>",
+            "<if test='#{user.id!=null}'>user_id=#{user.id},</if>",
+        "</set>",  
+        "where id=#{id}",
+       "</script>"      
+     })
+     @Override
+     void updateVisitor(Visitor visitor) ;
      
      
 }

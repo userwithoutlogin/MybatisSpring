@@ -90,6 +90,21 @@ public class EntityDaoToXmlMapper implements EntityMapper{
       session.insert("sqlM.insertVisitor",visitor);
     }
 
+    @Override
+    public void updateAuthor(Author author) {
+       session.update("sqlM.updateAuthor", author);
+    }
+
+    @Override
+    public void updateUser(User user) {
+      session.update("sqlM.updateUser", user);
+    }
+
+    @Override
+    public void updateVisitor(Visitor visitor) {
+    session.update("sqlM.updateVisitor", visitor);   
+    }
+
     
     
      

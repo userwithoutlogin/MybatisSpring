@@ -28,5 +28,7 @@ public interface EntityMapper {
 //    void insertUsers(List<User> users);
     void insertVisitor(Visitor visitor);
     
-    
+    void updateAuthor(Author author);
+    void updateUser(User user);
+    void updateVisitor(Visitor visitor);
 }

@@ -41,24 +41,33 @@ public class TestMain {
         
         EntityService es = ctx.getBean("entityService",EntityService.class);
         
+        
+        
         User u = new User();
         u.setUserName("User");
         u.setPassword("qw");
         es.insertUser(u);
          
-        
+        u.setUserName("Usr");
+        es.updateUser(u);
         
         Author a = new Author();
         a.setIdCard("qw2");
         a.setRealName("Dan");
         a.setUser(u);
         es.isertAuthor(a);
+        
+        a.setRealName("Dan1");
+        es.updateAuthor(a);
        
         Visitor v = new Visitor();
         v.setVisitorIp("234.123.111.21");
         v.setVisitDate(new Date());
         v.setUser(u);
         es.insertVisitor(v);
+        
+        v.setVisitorIp("127.0.0.1");
+        es.updateVisitor(v);
         
         List<Visitor> visitorsU = new ArrayList();
         visitorsU.add(v);
