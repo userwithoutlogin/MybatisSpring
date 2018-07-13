@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!DOCTYPE mapper PUBLIC 
+'-//mybatis.org//DTD Configuration 3.0//EN' 
+'http://mybatis.org/mybatis-3-mapper.dtd'>
+
+<mapper namespace="VHierarchy">
+    <resultMap id="Vehicle" type="Vehicle">
+        <id property="id" column="id"/>
+        <result property="color" column="color"/>
+        <result property="maxSpeed" column="max_speed"/>
+        <discriminator column="d" javaType="int">
+            <case value="1" resultMap="CarMap"/>
+            <case value="2" resultMap="VanMap"/>
+            <case value="3" resultMap="TruckMap"/>
+        </discriminator>
+    </resultMap>    
+    
+    <resultMap id="CarMap" type="Car">
+        <result property="color" column="color"/>
+    </resultMap>
+    
+    <resultMap id="VanMap" type="Van">
+        <result property="powerSlidingDoor" column="power_sliding_door"/>
+    </resultMap>
+    
+    <resultMap id="TruckMap" type="Truck">
+        <result property="boxSize" column="box_size"/>
+    </resultMap>
+</mapper>

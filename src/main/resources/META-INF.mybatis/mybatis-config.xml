@@ -8,12 +8,17 @@
         <typeAlias alias="User" type="com.mycompany.mybatisspring.entities.User"/>
         <typeAlias alias="Author" type="com.mycompany.mybatisspring.entities.Author"/>
         <typeAlias alias="Visitor" type="com.mycompany.mybatisspring.entities.Visitor"/>
+        <typeAlias alias="Vehicle" type="com.mycompany.mybatisspring.entities.Vehicle"/>
+        <typeAlias alias="Car" type="com.mycompany.mybatisspring.entities.Car"/>
+        <typeAlias alias="Van" type="com.mycompany.mybatisspring.entities.Van"/>
+        <typeAlias alias="Truck" type="com.mycompany.mybatisspring.entities.Truck"/>
     </typeAliases>
  
    <mappers>
       <mapper resource = "META-INF.mybatis/UserMapper.xml"/>
       <mapper resource="META-INF.mybatis/AuthorMapper.xml"/>
        <mapper resource="META-INF.mybatis/VisitorMapper.xml"/>
+       <mapper resource="META-INF.mybatis/VehicleHierarchy.xml"/>
       <mapper resource="META-INF.mybatis/SqlQueriesMapper.xml"/>
       
       <mapper class="com.mycompany.mybatisspring.mappers.EntityMapperAnnotation"/>

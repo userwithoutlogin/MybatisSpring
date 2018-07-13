@@ -17,3 +17,16 @@ insert into visitors(visitor_ip,visit_date,user_id) values
 ('182.128.104.15','2010-2-10',2),
 ('122.128.104.12','2000-4-15',2),
 ('122.128.104.128','2007-9-23',3);
+
+insert into vehicles(color,max_speed,door_count,d) values
+('red',180,4,1),
+('green',130,4,1),
+('blue',110,4,1);
+insert into vehicles(color,max_speed,box_size,d) values
+('black',100,4000,1),
+('white',90,1000,1),
+('black',110,3000,1);
+insert into vehicles(color,max_speed,power_sliding_door,d) values
+('orange',100,10,1),
+('purple',90,15,1),
+('grey',110,8,1);

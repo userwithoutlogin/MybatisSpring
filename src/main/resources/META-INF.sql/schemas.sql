@@ -17,8 +17,19 @@ foreign key (user_id) references users(id)
 create table visitors(
 id int unsigned not null auto_increment primary key,
 visitor_ip varchar(15) not null,
-visit_date Date not null,
+visit_date Date  ,
 user_id int unsigned not null,
 constraint fk_v_user 
 foreign key (user_id) references users(id)
+
 );
+
+create table vehicles(
+    id int unsigned not null auto_increment primary key,
+    color varchar(10) not null,
+    max_Speed int not null,
+    door_count int ,
+    box_size int ,
+    power_sliding_door int,
+    d int not null    
+)
