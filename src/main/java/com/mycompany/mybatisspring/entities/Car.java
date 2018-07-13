@@ -11,4 +11,13 @@ package com.mycompany.mybatisspring.entities;
  */
 public class Car extends Vehicle{
     private Integer doorCount;
+
+    public Integer getDoorCount() {
+        return doorCount;
+    }
+
+    public void setDoorCount(Integer doorCount) {
+        this.doorCount = doorCount;
+    }
+    
 }

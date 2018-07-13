@@ -17,6 +17,14 @@ public class Visitor {
     private Date visitDate;
     private User user;
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -39,19 +47,6 @@ public class Visitor {
 
     public void setVisitDate(Date visitDate) {
         this.visitDate = visitDate;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    @Override
-    public String toString() {
-        return "Visitor{" + "id=" + id + ", visitorIp=" + visitorIp + ", visitDate=" + visitDate + ", user=" + user + '}';
     }
     
     

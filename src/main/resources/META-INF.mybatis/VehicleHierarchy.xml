@@ -10,10 +10,10 @@ and open the template in the editor.
 'http://mybatis.org/mybatis-3-mapper.dtd'>
 
 <mapper namespace="VHierarchy">
-    <resultMap id="Vehicle" type="Vehicle">
+    <resultMap id="VehicleMap" type="Vehicle">
         <id property="id" column="id"/>
         <result property="color" column="color"/>
-        <result property="maxSpeed" column="max_speed"/>
+        <result property="maxSpeed" column="maxspeed"/>
         <discriminator column="d" javaType="int">
             <case value="1" resultMap="CarMap"/>
             <case value="2" resultMap="VanMap"/>
@@ -22,7 +22,7 @@ and open the template in the editor.
     </resultMap>    
     
     <resultMap id="CarMap" type="Car">
-        <result property="color" column="color"/>
+        <result property="doorCount" column="door_count"/>
     </resultMap>
     
     <resultMap id="VanMap" type="Van">

@@ -11,4 +11,13 @@ package com.mycompany.mybatisspring.entities;
  */
 public class Van extends Vehicle{
     private Integer powerSlidingDoor;
+
+    public Integer getPowerSlidingDoor() {
+        return powerSlidingDoor;
+    }
+
+    public void setPowerSlidingDoor(Integer powerSlidingDoor) {
+        this.powerSlidingDoor = powerSlidingDoor;
+    }
+    
 }

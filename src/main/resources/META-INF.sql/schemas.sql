@@ -27,7 +27,7 @@ foreign key (user_id) references users(id)
 create table vehicles(
     id int unsigned not null auto_increment primary key,
     color varchar(10) not null,
-    max_Speed int not null,
+    maxspeed int not null,
     door_count int ,
     box_size int ,
     power_sliding_door int,
