@@ -2,11 +2,15 @@ package com.mycompany.mybatisspring.mappers;
 
 import com.mycompany.mybatisspring.dynamicsql.AuthorDynamicSql;
 import com.mycompany.mybatisspring.entities.Author;
+import com.mycompany.mybatisspring.entities.Car;
+import com.mycompany.mybatisspring.entities.Truck;
 import com.mycompany.mybatisspring.entities.User;
+import com.mycompany.mybatisspring.entities.Van;
 import com.mycompany.mybatisspring.entities.Visitor;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.ibatis.annotations.Arg;
+import org.apache.ibatis.annotations.Case;
 import org.apache.ibatis.annotations.ConstructorArgs;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.DeleteProvider;
@@ -21,6 +25,7 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
  
 import org.apache.ibatis.annotations.ResultMap;
+import org.apache.ibatis.annotations.TypeDiscriminator;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
 import org.springframework.stereotype.Service;
@@ -182,6 +187,61 @@ public interface EntityMapperAnnotation extends EntityMapper{
       @Delete("delete from visitors where id=#{id}")
       @Override
       void deleteVisitor(Visitor visitor) ;
+      
+      
+//****************Vehicle hierarchy************
+      
+      @Results(id="VehicleMap",
+              value = {
+                  @Result(property = "id",column = "id"),
+                  @Result(property = "color",column ="color"),
+                  @Result(property = "maxSpeed",column ="maxspeed"),
+              }
+      )
+      @TypeDiscriminator( column = "d",javaType = Integer.class,
+                        cases = {
+                            @Case(value = "1",type = Car.class,results = {
+                                @Result(column = "door_count",property = "doorCount")
+                            }),
+                             @Case(value = "2",type = Van.class,results = {
+                    @Result(column = "power_sliding_door",property = "powerSlidingDoor")
+                }),
+                            @Case(value = "3",type = Truck.class,results = {
+                      @Result(column = "box_size",property = "boxSize")
+                  })  
+                        }
+      )
+      @Select("select * from vehicles where d = 1")
+    @Override
+      List<Car> findAllCars();
+
+      
+      
+//      @TypeDiscriminator(column = "d",javaType = Integer.class,
+//        cases = {
+//                @Case(value = "2",type = Van.class,results = {
+//                    @Result(column = "power_sliding_door",property = "powerSlidingDoor")
+//                })
+//        }
+//      )
+      @ResultMap(value = "VehicleMap")
+      @Select("select * from vehicles where d = 2")
+      @Override
+      List<Van> findAllVans();
+
+      
+      
+//      @TypeDiscriminator(column = "d",javaType = Integer.class,
+//              cases = {
+//                  @Case(value = "3",type = Truck.class,results = {
+//                      @Result(column = "box_size",property = "boxSize")
+//                  })
+//              }
+//      )
+      @ResultMap(value = "VehicleMap")
+      @Select("select * from vehicles where d = 3")
+      @Override
+      List<Truck> findAllTrucks() ;
      
-     
+      
 }
