@@ -102,8 +102,19 @@ and open the template in the editor.
     
       <sql id="insV">insert into visitors(user_id,visitor_ip,visit_date) values </sql>
     <insert  id="insertVisitor" parameterType="Visitor" keyProperty="id" useGeneratedKeys="true">
-        insert into visitors(visitor_ip,visit_date,user_id) values
-         (#{visitorIp},#{visitDate},#{user.id})
+        insert into visitors 
+        
+        <trim prefix="(" suffix=")" suffixOverrides=","> 
+            <if test="visitorIp != null"> visitor_ip, </if> 
+            <if test="visitDate != null"> visit_date, </if> 
+            <if test="user.id != null"> user_id, </if> 
+        </trim> 
+        <trim prefix="values (" suffix=")" suffixOverrides=","> 
+            <if test="visitorIp != null"> #{visitorIp}, </if> 
+            <if test="visitDate != null"> #{visitDate}, </if> 
+            <if test="user.id != null"> #{user.id}, </if> 
+        </trim>
+ 
     </insert> 
     
      <!--*****************UPDATE****************--> 
@@ -116,9 +127,9 @@ and open the template in the editor.
             <if test="#{user.id!=null}">user_id = #{user.id},</if>
         </set>-->
         <trim prefix="set" suffixOverrides=",">
-            <if test="#{realName!=null}">real_name = #{realName},</if>
-            <if test="#{idCard!=null}">id_card = #{idCard},</if>
-            <if test="#{user.id!=null}">user_id = #{user.id},</if>
+            <if test="realName!=null">real_name = #{realName},</if>
+            <if test="idCard!=null">id_card = #{idCard},</if>
+            <if test="user.id!=null">user_id = #{user.id},</if>
         </trim>
         where id=#{id}
     </update>
@@ -126,20 +137,20 @@ and open the template in the editor.
     <update id="updateUser" parameterType="User">
         update users
         <set>
-            <if test="#{userName!=null}">user_name=#{userName},</if>
-            <if test="#{password!=null}">password=#{password},</if>
+            <if test="userName!=null">user_name=#{userName},</if>
+            <if test="password!=null">password=#{password},</if>
         </set>        
         <where>
-            <if test="#{id != null}">id=#{id}</if>
+            <if test="id != null">id=#{id}</if>
         </where>
     </update>
     
     <update id="updateVisitor" parameterType="Visitor">
         update visitors
         <set>
-            <if test="#{visitorIp!=null}">visitor_ip=#{visitorIp},</if>
-            <if test="#{visitDate!=null}">visit_date=#{visitDate},</if>
-            <if test="#{user.id!=null}">user_id=#{user.id},</if>
+            <if test="visitorIp!=null">visitor_ip=#{visitorIp},</if>
+            <if test="visitDate!=null">visit_date=#{visitDate},</if>
+            <if test="user.id!=null">user_id=#{user.id},</if>
         </set>
         
         where id=#{id}
@@ -167,5 +178,18 @@ and open the template in the editor.
             <property name="table" value="visitors"/>
             <property name="id" value="#{id}"/>
         </include>
-    </delete>       
+    </delete>
+    
+ <!--***************Vehicle hierarchy**************-->
+ 
+    <select id="findAllCars" resultMap="VHierarchy.VehicleMap">
+        select * from vehicles where d = 1
+    </select>
+    <select id="findAllVans" resultMap="VHierarchy.VehicleMap">
+        select * from vehicles where d = 2
+    </select>
+    <select id="findAllTrucks" resultMap="VHierarchy.VehicleMap">
+        select * from vehicles where d = 3
+    </select>
+                         
 </mapper>

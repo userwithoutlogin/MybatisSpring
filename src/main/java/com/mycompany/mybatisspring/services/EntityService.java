@@ -6,7 +6,10 @@
 package com.mycompany.mybatisspring.services;
 
 import com.mycompany.mybatisspring.entities.Author;
+import com.mycompany.mybatisspring.entities.Car;
+import com.mycompany.mybatisspring.entities.Truck;
 import com.mycompany.mybatisspring.entities.User;
+import com.mycompany.mybatisspring.entities.Van;
 import com.mycompany.mybatisspring.entities.Visitor;
 import java.util.List;
 import javax.annotation.Resource;
@@ -91,4 +94,18 @@ public class EntityService {
     public void deleteVisitor(Visitor visitor){
         entityMapper.deleteVisitor(visitor);
     }
+//    ************Vehicle hierarchy*************
+    public List<Car> selectAllCars(){
+       return  entityMapper.findAllCars();
+    }
+    
+    public List<Van> selectAllVans(){
+       return  entityMapper.findAllVans();
+    }
+    
+    public List<Truck> selectAllTrucks(){
+       return  entityMapper.findAllTrucks();
+    }
+    
+    
 }

@@ -6,7 +6,10 @@
 package com.mycompany.mybatisspring.mappers;
 
 import com.mycompany.mybatisspring.entities.Author;
+import com.mycompany.mybatisspring.entities.Car;
+import com.mycompany.mybatisspring.entities.Truck;
 import com.mycompany.mybatisspring.entities.User;
+import com.mycompany.mybatisspring.entities.Van;
 import com.mycompany.mybatisspring.entities.Visitor;
 import java.util.ArrayList;
 import java.util.List;
@@ -118,6 +121,34 @@ public class EntityDaoToXmlMapper implements EntityMapper{
     @Override
     public void deleteVisitor(Visitor visitor) {
         session.delete("sqlM.deleteVisitor", visitor);
+    }
+
+    @Override
+    public List<Car> findAllCars() {
+     return session.selectList("sqlM.findAllCars");
+    }
+
+    @Override
+    public Car findCarById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Van> findAllVans() {
+      return session.selectList("sqlM.findAllVans"); }
+
+    @Override
+    public Van findVanById() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Truck> findAllTrucks() {
+        return session.selectList("sqlM.findAllTrucks");}
+
+    @Override
+    public Truck findTruckById() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     

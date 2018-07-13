@@ -7,7 +7,10 @@ package com.mycompany.mybatisspring;
 
 
 import com.mycompany.mybatisspring.entities.Author;
+import com.mycompany.mybatisspring.entities.Car;
+import com.mycompany.mybatisspring.entities.Truck;
 import com.mycompany.mybatisspring.entities.User;
+import com.mycompany.mybatisspring.entities.Van;
 import com.mycompany.mybatisspring.entities.Visitor;
 import com.mycompany.mybatisspring.mappers.EntityDaoToXmlMapper;
  
@@ -36,12 +39,7 @@ public class TestMain {
         ctx.load(cpRes);
         ctx.refresh();
         
- 
-         
-        
         EntityService es = ctx.getBean("entityService",EntityService.class);
-        
-        
         
         User u = new User();
         u.setUserName("User");
@@ -92,6 +90,10 @@ public class TestMain {
         es.deleteUser(user);
          List<User> users1 = es.findAllUsers();
         
+         
+         List<Car> cars = es.selectAllCars();
+         List<Van> vans = es.selectAllVans();
+         List<Truck> trucks = es.selectAllTrucks();
     }
 //     
 }
